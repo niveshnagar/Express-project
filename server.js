@@ -1,8 +1,10 @@
 const express = require("express");
 
+// making server
 const app = express();
 const PORT = 3000;
 
+// current friend database
 const friends = [
   {
     id: 0,
@@ -34,7 +36,6 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 // route - "/"
-
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
