@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const friendsRouter = require("./routers/friends.router.js");
 const messagesRouter = require("./routers/messages.router.js");
 
@@ -15,6 +16,7 @@ app.use((req, res, next) => {
   console.log(`Completed request in: ${delta}ms`);
 });
 
+app.use("/site", express.static(path.join(__dirname, "public")));
 app.use(express.json());
 
 // route - "/"
