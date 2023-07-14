@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-// route - "/"
+// route - "/" hello
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
