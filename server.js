@@ -1,15 +1,15 @@
 const express = require("express");
-const friendsController = require("./controllers/friends.controller.js");
-const messagesController = require("./controllers/messages.controller.js");
+const friendsRouter = require("./routers/friends.router.js");
+const messagesRouter = require("./routers/messages.router.js");
 
-// making server
+// making server;
 const app = express();
 const PORT = 3000;
 
-// middlewares
+// middlewares;
 app.use((req, res, next) => {
   const start = Date.now();
-  console.log(`Recieved a: ${req.method} request at: ${req.url}`);
+  console.log(`Recieved a: ${req.method} request at: ${req.baseUrl}${req.url}`);
   next();
   const delta = Date.now() - start;
   console.log(`Completed request in: ${delta}ms`);
@@ -22,14 +22,9 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-// route - "/friends"
-app.get("/friends", friendsController.getFriends);
-app.post("/friends", friendsController.postFriends);
-app.get("/friends/:friendId",friendsController.getFriend);
-
-// route - "/messages"
-app.get("/messages", messagesController.getMessages);
-app.post("/messages", messagesController.postMessages);
+// route middlewares;
+app.use("/friends", friendsRouter);
+app.use("/messages", messagesRouter);
 
 // listening on a specific port
 app.listen(PORT, () => {
