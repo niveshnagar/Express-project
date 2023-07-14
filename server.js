@@ -7,6 +7,9 @@ const messagesRouter = require("./routers/messages.router.js");
 const app = express();
 const PORT = 3000;
 
+app.set("view engine", "hbs");
+app.set("views", path.join(__dirname, "views"));
+
 // middlewares;
 app.use((req, res, next) => {
   const start = Date.now();
@@ -21,7 +24,10 @@ app.use(express.json());
 
 // route - "/"
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.render("index", {
+    title: "First website on my server",
+    caption: "Chester! <3",
+  });
 });
 
 // route middlewares;
